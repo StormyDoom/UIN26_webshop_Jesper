@@ -1,8 +1,9 @@
-import {Link, Outlet } from "react-router-dom"
+import {Link, Outlet, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 export default function CategoryLayout(){
 
+    const {slug} = useParams()
     const [apiData, setApiData] = useState([])
     const [apiEndpoint, setApiEndpoint] = useState()
 
@@ -29,7 +30,7 @@ export default function CategoryLayout(){
             {/* Spørsmåltegn betyr "Hvis det finnes" */}
             {/*apiData?.map((item) => <Link key={item.name +'-xt'} to={item.name} onClick={()=> setApiEndpoint(item.url)}>{item.name}</Link>)*/}
         </nav>
-        <Outlet context={{apiEndpoint, defaultApiUrl}} />
+        <Outlet context={{apiEndpoint, defaultApiUrl, setApiEndpoint}} />
     </>
     )
 }

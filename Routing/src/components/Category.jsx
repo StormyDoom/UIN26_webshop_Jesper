@@ -3,9 +3,8 @@ import { useOutletContext, useParams } from "react-router-dom"
 
 export default function Category(){
     const {apiEndpoint, defaultApiUrl} = useOutletContext()
-
     const [apiData, setApiData] = useState([])
-
+    const [spritesImg, setSpritesImg] = useState()
     const {slug} = useParams()
 
     console.log("Denne kommer fra Category", apiEndpoint)
@@ -16,17 +15,21 @@ export default function Category(){
         setApiData(data)
     }
 
-    console.log(apiData)
+    console.log("Cat", apiData, apiEndpoint)
 
     useEffect(()=>{
         getSingleData()
+        
     },[slug])
+
+    console.log("Mine bilder", spritesImg)
     
     return(
         <main>
             <h1>{apiData?.name}</h1>
             <section>
                 <h2>Bilder</h2>
+
                 <img src={apiData?.sprites?.front_default} alt={apiData?.name}/>
             </section>
         </main>
